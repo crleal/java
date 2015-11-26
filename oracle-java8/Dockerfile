@@ -6,7 +6,7 @@
 #
 
 # Pull base image.
-FROM ubuntu
+FROM ubuntu:latest
 
 # Install Java.
 RUN \
