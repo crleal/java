@@ -11,7 +11,19 @@ FROM ubuntu:latest
 # Install Java.
 
 RUN apt-get update && apt-get dist-upgrade -y && \
-	apt-get autoclean && apt-get --purge -y autoremove && \
-	rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
-	
+  add-apt-repository -y ppa:webupd8team/java && \
+  apt-get update && \
+  apt-get install -y oracle-java8-installer && \
+  rm -rf /var/lib/apt/lists/* && \
+  rm -rf /var/cache/oracle-jdk8-installer
+
+
+# Define working directory.
+WORKDIR /data
+
+# Define commonly used JAVA_HOME variable
+ENV JAVA_HOME /usr/lib/jvm/java-8-oracle
+
+# Define default command.
+CMD ["bash"]
 
